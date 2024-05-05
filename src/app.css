@@ -1,0 +1,80 @@
+body {
+    background-color: #35216a;
+}
+
+.container {
+    display: flex;
+    margin-top: 50px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchElement {
+    width: 80%;
+    height: 20px;
+    margin-top: 5px;
+    padding: 10px;
+    background-color: #1d0b42;
+    border: black .1px solid;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    color: orange;
+    cursor: pointer;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    font-family: "Noto Sans", sans-serif;
+}
+
+nav {
+    background-color: #1d0b42;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+}
+
+nav>span {
+    margin: 10px;
+    color: orange;
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+nav>div {
+    margin: 10px;
+}
+
+nav>div>input {
+    height: 30px;
+    border: .5px black solid;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: #35216a;
+    width: 40vw;
+    color: white;
+    font-weight: 800;
+}
+
+nav>div>input:focus {
+    outline: none;
+    caret-color: white;
+}
+
+nav>div>button {
+    border: 1px black solid;
+    border-radius: 10px;
+    height: 30px;
+    background-color: orange;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+}
