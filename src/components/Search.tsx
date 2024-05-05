@@ -6,7 +6,7 @@ function Search() {
   return (
     <>
       <div className="container">
-        {searchResult.map((c) => {
+        {searchResult?.map((c) => {
           return (
             <div key={c.id} className="searchElement">
               {c.name} - {c.country} - {c.timezone}
