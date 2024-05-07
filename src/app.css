@@ -49,6 +49,13 @@ nav>span {
     font-size: 1.2rem;
 }
 
+.welcome {
+    color: orange;
+    font-weight: 800;
+    font-size: 2rem;
+}
+
+
 nav>div {
     margin: 10px;
 }
@@ -77,4 +84,41 @@ nav>div>button {
     cursor: pointer;
     color: white;
     font-weight: 600;
+}
+
+.carcont {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.car::-webkit-scrollbar {
+    height: 5px;
+}
+
+.car::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 10px;
+}
+
+.car::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.car {
+    margin-top: 20px;
+    display: flex;
+    overflow-x: auto;
+    width: 80vw;
+}
+
+.element {
+    text-align: center;
+    min-width: 35vw;
+    padding: 30px;
+    margin-right: 20px;
+    background-color: #1d0b42;
+    list-style-type: none;
+    color: orange;
+    border-radius: 10px;
 }

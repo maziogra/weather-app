@@ -1,9 +1,9 @@
-import { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import Nav from "./components/Nav";
-import Search from "./components/Search";
+import Home from "./components/Home";
 import "./app.css";
 
-type City = {
+export type City = {
   admin1: string;
   admin1_id: number;
   admin2: string;
@@ -23,6 +23,26 @@ type City = {
   timezone: string;
 };
 
+const emptyCity: City = {
+  admin1: "",
+  admin1_id: 0,
+  admin2: "",
+  admin2_id: 0,
+  admin3: "",
+  admin3_id: 0,
+  country: "",
+  country_code: "",
+  country_id: 0,
+  elevation: 0,
+  feature_code: "",
+  id: 0,
+  latitude: 0,
+  longitude: 0,
+  name: "",
+  population: 0,
+  timezone: "",
+};
+
 export const SearchContext = createContext<{
   searchResult: City[];
   setSearchResult: React.Dispatch<React.SetStateAction<City[]>>;
@@ -31,13 +51,35 @@ export const SearchContext = createContext<{
   setSearchResult: () => {},
 });
 
+export const ContentContext = createContext<{
+  content: React.ReactElement;
+  setContent: React.Dispatch<React.SetStateAction<React.ReactElement>>;
+}>({ content: <Home />, setContent: () => {} });
+
+export const SelectedCityContext = createContext<{
+  selectedCity: City;
+  setSelectedCity: React.Dispatch<React.SetStateAction<City>>;
+}>({
+  selectedCity: emptyCity,
+  setSelectedCity: () => {},
+});
+
 function App() {
   const [searchResult, setSearchResult] = useState<City[]>([]);
+  const [content, setContent] = useState<React.ReactElement>(<Home />);
+  const [selectedCity, setSelectedCity] = useState<City>(emptyCity);
+
   return (
     <>
       <SearchContext.Provider value={{ searchResult, setSearchResult }}>
-        <Nav />
-        <Search />
+        <ContentContext.Provider value={{ content, setContent }}>
+          <SelectedCityContext.Provider
+            value={{ selectedCity, setSelectedCity }}
+          >
+            <Nav />
+            {content}
+          </SelectedCityContext.Provider>
+        </ContentContext.Provider>
       </SearchContext.Provider>
     </>
   );
