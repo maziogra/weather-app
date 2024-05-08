@@ -18,7 +18,7 @@ body {
 }
 
 .searchElement {
-    width: 80%;
+    width: 80vw;
     height: 20px;
     margin-top: 5px;
     padding: 10px;
@@ -136,4 +136,23 @@ nav>div>button {
     list-style-type: none;
     color: orange;
     border-radius: 10px;
+}
+
+
+@media only screen and (max-width: 500px) {
+    nav>span {
+        display: none;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+    nav>div>input {
+        width: 70vw;
+    }
+
+    .searchElement {
+        padding: 20px
+    }
 }
