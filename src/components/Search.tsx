@@ -24,17 +24,21 @@ function Search() {
   return (
     <>
       <div className="container">
-        {searchResult?.map((c) => {
-          return (
-            <div
-              key={c.id}
-              onClick={() => handleClick(c.id)}
-              className="searchElement"
-            >
-              {c.name} - {c.country} - {c.timezone}
-            </div>
-          );
-        })}
+        {searchResult ? (
+          searchResult?.map((c) => {
+            return (
+              <div
+                key={c.id}
+                onClick={() => handleClick(c.id)}
+                className="searchElement"
+              >
+                {c.name} - {c.country} - {c.timezone}
+              </div>
+            );
+          })
+        ) : (
+          <h1>NO RESULTS</h1>
+        )}
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { ContentContext, SearchContext } from "../App";
 import Search from "./Search";
+import Home from "./Home";
 
 function Nav() {
   const [city, setCity] = useState("");
@@ -9,6 +10,12 @@ function Nav() {
 
   function handleCity(e: React.ChangeEvent<HTMLInputElement>) {
     setCity(e.target.value);
+  }
+
+  function handleKey(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter") {
+      searchCity();
+    }
   }
 
   async function searchCity() {
@@ -26,9 +33,14 @@ function Nav() {
   return (
     <>
       <nav>
-        <span>Weather</span>
+        <span onClick={() => setContent(<Home />)}>Weather</span>
         <div>
-          <input type="text" value={city} onChange={handleCity} />
+          <input
+            type="text"
+            value={city}
+            onChange={handleCity}
+            onKeyDown={handleKey}
+          />
           <button onClick={searchCity}>SEARCH</button>
         </div>
       </nav>
