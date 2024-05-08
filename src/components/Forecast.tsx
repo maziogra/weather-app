@@ -22,7 +22,6 @@ type Forecast = {
     temperature_2m: string;
     rain: string;
     snowfall: string;
-    // new
     wind_speed_10m: string;
     relative_humidity_2m: string;
     apparent_temperature: string;
