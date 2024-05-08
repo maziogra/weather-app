@@ -54,7 +54,6 @@ function Forecast() {
   {
     useEffect(() => {
       async function fetchData(url: string) {
-        console.log(url);
         try {
           const response = await fetch(url);
           if (!response.ok) {

@@ -17,7 +17,6 @@ function Search() {
     if (selected) {
       setSelectedCity(selected);
       setContent(<Forecast />);
-      console.log(selected);
     }
   }
 
