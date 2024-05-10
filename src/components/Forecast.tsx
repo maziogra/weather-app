@@ -48,6 +48,16 @@ type Forecast = {
 function Forecast() {
   const { selectedCity } = useContext(SelectedCityContext);
   const [forecast, setForecast] = useState<Forecast>();
+
+  const weatherIcons = {
+    sunny:
+      "https://cdn.icon-icons.com/icons2/2533/PNG/512/sun_weather_icon_152003.png",
+    stormy:
+      "https://www.shareicon.net/data/2016/06/17/595814_storm_512x512.png",
+    snowy:
+      "https://png.pngtree.com/png-vector/20230321/ourmid/pngtree-snow-clouds-with-snowflakes-vector-png-image_6657012.png",
+    rainy: "https://www.freeiconspng.com/uploads/rain-cloud-icon-4.png",
+  };
   let today, days;
 
   {
@@ -79,12 +89,12 @@ function Forecast() {
             <img
               src={
                 forecast.current.rain < 0.15
-                  ? "https://cdn.icon-icons.com/icons2/2533/PNG/512/sun_weather_icon_152003.png"
+                  ? weatherIcons.sunny
                   : forecast.current.rain > 0.15
-                  ? "https://e7.pngegg.com/pngimages/598/737/png-clipart-storm-ico-icon-storm-love-text.png"
+                  ? weatherIcons.stormy
                   : forecast.current.snowfall > 0.15
-                  ? "https://png.pngtree.com/png-vector/20230321/ourmid/pngtree-snow-clouds-with-snowflakes-vector-png-image_6657012.png"
-                  : "https://www.freeiconspng.com/uploads/rain-cloud-icon-4.png"
+                  ? weatherIcons.snowy
+                  : weatherIcons.rainy
               }
               width="100px"
             />
@@ -117,13 +127,15 @@ function Forecast() {
             <div key={i} className="element">
               <img
                 src={
-                  forecast.daily.precipitation_probability_max[i] < 65
-                    ? "https://cdn.icon-icons.com/icons2/2533/PNG/512/sun_weather_icon_152003.png"
+                  forecast.daily.precipitation_probability_max[i] < 50
+                    ? weatherIcons.sunny
                     : forecast.daily.rain_sum[i] > 10
-                    ? "https://www.shareicon.net/data/2016/06/17/595814_storm_512x512.png"
+                    ? weatherIcons.stormy
                     : forecast.daily.temperature_2m_max[i] < 5
-                    ? "https://png.pngtree.com/png-vector/20230321/ourmid/pngtree-snow-clouds-with-snowflakes-vector-png-image_6657012.png"
-                    : "https://www.freeiconspng.com/uploads/rain-cloud-icon-4.png"
+                    ? weatherIcons.snowy
+                    : forecast.daily.rain_sum[i] > 0.1
+                    ? weatherIcons.rainy
+                    : weatherIcons.sunny
                 }
                 width="100px"
               />
