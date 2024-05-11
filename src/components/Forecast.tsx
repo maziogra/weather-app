@@ -1,5 +1,6 @@
-import { useContext, useEffect, useState } from "react";
-import { SelectedCityContext } from "../App";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 type Forecast = {
   latitude: number;
@@ -46,7 +47,9 @@ type Forecast = {
 };
 
 function Forecast() {
-  const { selectedCity } = useContext(SelectedCityContext);
+  const selectedCity = useSelector(
+    (state: RootState) => state.selectedCity.selectedCity
+  );
   const [forecast, setForecast] = useState<Forecast>();
 
   const weatherIcons = {

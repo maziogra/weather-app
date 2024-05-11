@@ -1,22 +1,21 @@
-import { useContext } from "react";
-import {
-  City,
-  ContentContext,
-  SearchContext,
-  SelectedCityContext,
-} from "../App";
 import Forecast from "./Forecast";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import { setSelectedCity } from "../store/search/selectedCity";
+import { setContent } from "../store/search/content";
+import { City } from "../App";
 
 function Search() {
-  const { searchResult } = useContext(SearchContext);
-  const { setContent } = useContext(ContentContext);
-  const { setSelectedCity } = useContext(SelectedCityContext);
+  const searchResult = useSelector(
+    (state: RootState) => state.search.searchResult
+  );
+  const dispatch = useDispatch();
 
   function handleClick(id: number) {
     const selected: City | undefined = searchResult.find((c) => c.id === id);
     if (selected) {
-      setSelectedCity(selected);
-      setContent(<Forecast />);
+      dispatch(setSelectedCity(selected));
+      dispatch(setContent(<Forecast />));
     }
   }
 

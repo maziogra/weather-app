@@ -1,12 +1,13 @@
-import { useContext, useState } from "react";
-import { ContentContext, SearchContext } from "../App";
+import { useState } from "react";
 import Search from "./Search";
 import Home from "./Home";
+import { useDispatch } from "react-redux";
+import { setSearchResults } from "../store/search/search";
+import { setContent } from "../store/search/content";
 
 function Nav() {
   const [city, setCity] = useState("");
-  const { setSearchResult } = useContext(SearchContext);
-  const { setContent } = useContext(ContentContext);
+  const dispatch = useDispatch();
 
   function handleCity(e: React.ChangeEvent<HTMLInputElement>) {
     setCity(e.target.value);
@@ -19,7 +20,7 @@ function Nav() {
   }
 
   async function searchCity() {
-    setContent(<Search />);
+    dispatch(setContent(<Search />));
     const response = await fetch(
       encodeURI(
         `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=10&language=en&format=json`
@@ -27,13 +28,13 @@ function Nav() {
     );
     setCity("");
     const data = await response.json();
-    setSearchResult(data.results);
+    dispatch(setSearchResults(data.results));
   }
 
   return (
     <>
       <nav>
-        <span onClick={() => setContent(<Home />)}>Weather</span>
+        <span onClick={() => dispatch(setContent(<Home />))}>Weather</span>
         <div>
           <input
             type="text"
